@@ -52,9 +52,12 @@ class _TouchKeywords(KeywordGroup):
         long_press = TouchAction(driver).long_press(element)
         long_press.perform() 
 
-    def tap(self, locator):
+    def tap(self, locator, x=None, y=None, count=1):
         """ Tap on element """
         driver = self._current_application()
         el = self._element_find(locator, True, True)
         action = TouchAction(driver)
-        action.tap(el).perform()
+        if x is None or y is None:
+            action.tap(el).perform()
+        else:
+            action.tap(el, x, y, count).perform()
