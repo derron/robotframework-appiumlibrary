@@ -62,6 +62,14 @@ class _ElementKeywords(KeywordGroup):
         self._info("Setting text '%s' into text field '%s'" % (text, locator))
         self._element_input_value_by_locator(locator, text)
 
+    def get_text(self, locator):
+        """Gets the text of text field identified by `locator`.
+
+        See `introduction` for details about locating elements.
+        """
+        self._info("Getting text of text field '%s'" % locator)
+        return self._element_get_text_by_locator(locator)
+
     def hide_keyboard(self):
         """
         Hides the software keyboard on the device, using the specified key to
@@ -246,6 +254,13 @@ class _ElementKeywords(KeywordGroup):
         try:
             element = self._element_find(locator, True, True)
             element.set_value(text)
+        except Exception, e:
+            raise e
+
+    def _element_get_text_by_locator(self, locator):
+        try:
+            element = self._element_find(locator, True, True)
+            return element.text
         except Exception, e:
             raise e
 
