@@ -1,10 +1,13 @@
 .PHONY: help
 
 help:
-	@echo targes: version, generate_doc, pypi_upload, clean_pyc, andriod_demo, ios_demo, demo, unittest, test
+	@echo targes: version, generate_doc, install, pypi_upload, clean_pyc, andriod_demo, ios_demo, demo, unittest, test
 
 generate_doc: 
-	VENV/bin/python -m robot.libdoc ./src/AppiumLibrary/ ./doc/AppiumLibrary.html
+	python -m robot.libdoc ./src/AppiumLibrary/ ./doc/AppiumLibrary.html
+
+install:
+	python ./setup.py install
 
 update_github:
 	version=`python -c "import sys;sys.path.insert(0,'src');import AppiumLibrary;print AppiumLibrary.__version__"`
