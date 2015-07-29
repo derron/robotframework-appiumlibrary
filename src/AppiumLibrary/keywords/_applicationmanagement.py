@@ -4,6 +4,7 @@ import os
 from appium import webdriver
 from AppiumLibrary.utils import ApplicationCache
 from keywordgroup import KeywordGroup
+from selenium.webdriver.common.alert import Alert
 
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
@@ -153,6 +154,18 @@ class _ApplicationManagementKeywords(KeywordGroup):
         | Go To URL         | http://m.webapp.com          |
         """
         self._current_application().get(url)
+
+    def accept_alert(self):
+        """
+        Accepts the alert available.
+        """
+        self._current_application().execute("acceptAlert")
+
+    def dismiss_alert(self):
+        """
+        Dismisses the alert available.
+        """
+        self._current_application().execute("dismissAlert")
 
     # Private
 
