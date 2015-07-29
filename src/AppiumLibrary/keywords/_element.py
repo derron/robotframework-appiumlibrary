@@ -70,6 +70,24 @@ class _ElementKeywords(KeywordGroup):
         self._info("Getting text of text field '%s'" % locator)
         return self._element_get_text_by_locator(locator)
 
+    def get_location(self, locator):
+        """Gets the location of element identified by `locator`."""
+
+        element = self._element_find(locator, True, False)
+        if element is None:
+            return None
+        else:
+            return element.location
+
+    def get_size(self, locator):
+        """Gets the size of element identified by `locator`."""
+
+        element = self._element_find(locator, True, False)
+        if element is None:
+            return None
+        else:
+            return element.size
+
     def hide_keyboard(self):
         """
         Hides the software keyboard on the device, using the specified key to
